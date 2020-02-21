@@ -1,0 +1,25 @@
+<br><br>
+<div class="container" *ngIf="step==0">
+  <div class="jumbotron" style="margin: 15px;padding: 15px;">
+    <form [formGroup]="addBalanceForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label>Current Balance: </label>
+            <input type="text" class="form-control" disabled placeholder="Rs {{currentWalletBalance}}"><br>
+          </div>  
+      <div class="form-group">
+          <label for="walletBalance">Amount to be Added: </label>
+          <input type="number" class="form-control" id="walletBalance" formControlName="walletBalance" placeholder="Enter Amount in Rs"><br>
+        </div>
+        <div class="w-100" style="text-align: center">
+            <button type="submit" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Add Money</button>
+        </div>
+        <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+      </form>
+    </div> 
+</div>
+
+<div class="container" *ngIf="step==1">
+    <div class="alert alert-success w-100 mt-3">Balance Added Succesfully</div>
+    <button class="btn btn-primary" (click)="back()">Done</button>
+</div>
+<router-outlet></router-outlet>

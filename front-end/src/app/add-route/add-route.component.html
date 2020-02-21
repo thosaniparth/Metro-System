@@ -1,0 +1,18 @@
+<br><br>
+<div class="container">
+    <form [formGroup]="addRouteForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="a">Source/Destination: </label>
+            <input type="text" class="form-control" id="a" formControlName="a"><br>
+            <label for="b">Source/Destination: </label>
+            <input type="text" class="form-control" id="b" formControlName="b"><br>
+            <label for="price">Price: </label>
+            <input type="number" class="form-control" id="price" formControlName="price"><br>
+        </div>
+        <div class="w-100" style="text-align: center">
+            <button type="submit" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Add Route</button>
+        </div>
+        <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+    </form>
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="jumbotron" style="margin: 15px;padding: 15px;">  
+    <div>
+        <h1 class="h1 mb-3 font-weight-normal" style="text-align: center;">Metro Software System</h1>    </div>  
+    <!-- <div style="text-align: center;"><h3>LOGIN</h3></div>   -->
+    <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div style="padding-left: 40%;">
+          <img class="mb-4" src="data:image/jpeg;base64,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" alt="" width="200" height="150">
+      </div>  
+        <h1 class="h3 mb-3 font-weight-normal" style="text-align: center;">Please Sign In</h1>
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+              <label for="username" class="sr-only">Username</label>
+              <input type="text" id="username" class="form-control" formControlName="username" placeholder="Username" required autofocus>
+            </div>
+            <div class="form-group col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" class="form-control" formControlName="password" placeholder="Password" required>
+            </div>
+            <div class="form-group col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+                <div class="checkbox mb-3">
+                    <label>
+                      <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                  </div>
+            </div>
+            <div class="form-group col-md-4"></div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+            <div class="form-group col-md-4">
+                <div class="w-100" style="text-align: center">
+                    <button type="submit" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Login</button>
+                    &nbsp;&nbsp;
+                    <button class="btn btn-primary" (click)="register()" style="background-color: #DCDCDC;color: black;border-color: black;">Register</button>
+                </div>
+                <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+            </div>
+            <div class="form-group col-md-4"></div>
+        </div>
+        
+      </form>
+  <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="username">Username: </label>
+          <input type="text" class="form-control" id="username" formControlName="username"><br>
+          <label for="password">Password: </label>
+          <input type="password" class="form-control" id="password" formControlName="password"><br>
+        </div>
+        <div class="w-100" style="text-align: left">
+            <button type="submit" class="btn btn-primary">Login</button>
+            &nbsp;&nbsp;
+            <button class="btn btn-primary" (click)="register()">Register</button>
+        </div>
+        <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+      </form> -->
+</div>

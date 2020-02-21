@@ -1,0 +1,93 @@
+<br>
+<div class="container">
+    <table *ngIf="routes && step==0"  class="table table-hover">
+        <tr>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Price</th>
+            <th *ngIf="!admin">Action</th>
+        </tr>
+        <tr *ngFor="let route of routes">
+            <td>{{route.a}}</td>
+            <td>{{route.b}}</td>
+            <td>{{route.price}}</td>
+            <td *ngIf="!admin"><button (click)="selectRoute(route,0)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Select Route</button></td>
+        </tr>
+        <tr *ngFor="let route of routes">
+            <td>{{route.b}}</td>
+            <td>{{route.a}}</td>
+            <td>{{route.price}}</td>
+            <td *ngIf="!admin"><button (click)="selectRoute(route,1)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Select Route</button></td>
+        </tr>
+    </table>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg && step==0">{{errMsg}}</div>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="!routes && step==0">No Routes Found</div>
+</div>
+
+<div class="container" *ngIf="step==1">
+    <table *ngIf="coupons && step==1"  class="table table-hover">
+        <tr>
+            <th>Code</th>
+            <th>Percentage Off</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let coupon of coupons" style="padding: 10px;">
+            <td>{{coupon.code}}</td>
+            <td>{{coupon.percentageOff}} %</td>
+            <td><button (click)="applyCoupon(coupon)" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Apply Coupon & Proceed to Pay</button></td>
+        </tr>
+    </table>
+    <button (click)="back()" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Back</button>
+    &nbsp;&nbsp;
+    <button (click)="dontApplyCoupon()" class="btn btn-primary" style="background-color: #DCDCDC;color: black;border-color: black;">Do not Apply Coupon & Proceed to Pay</button>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="!coupons && step==1">No Coupons Found</div>
+</div>
+
+<div class="container" *ngIf="step==2">
+    <div class="jumbotron" style="margin: 15px;padding: 15px;">
+    <h3 style="text-align: center;">Ticket Summary</h3>
+    <h2 *ngIf="couponCodeApplied">Coupon Applied</h2>
+    <h4>Route Details</h4>
+    <div class="form-group">
+        <label><b>Source: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{a}}"><br>
+    </div>
+    <div class="form-group">
+        <label><b>Destination: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{b}}"><br>
+    </div>
+    <div class="form-group" *ngIf="!couponCode">
+        <label><b>Price: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{ orgPrice }}"><br>
+    </div>
+    <div class="form-group" *ngIf="couponCode">
+        <label><b>Coupon Code Applied: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{ couponCode }}"><br>
+    </div>
+    <div class="form-group" *ngIf="couponCode">
+        <label><b>Original Price: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{ orgPrice }}"><br>
+    </div>
+    <div class="form-group" *ngIf="couponCode">
+        <label><b>Discounted Price: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{ finalPrice }}"><br>
+    </div>
+    <!-- <h5>Source: {{ a }}</h5>
+    <h5>Destination: {{ b }}</h5>
+    <h5 *ngIf="!couponCode">Price: {{ orgPrice }}</h5>
+    <h5 *ngIf="couponCode">Coupon Code Applied: {{ couponCode }}</h5>
+    <h5 *ngIf="couponCode">Original Price: {{ orgPrice }}</h5>
+    <h5 *ngIf="couponCode">Discounted Price: {{ finalPrice }}</h5> -->
+    <button (click)="pay()" class="btn btn-primary"style="background-color: #DCDCDC;color: black;border-color: black;">Pay & Buy Ticket</button>
+    &nbsp;
+    <button (click)="back()" class="btn btn-primary"style="background-color: #DCDCDC;color: black;border-color: black;">Back</button>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+</div>
+</div>
+
+<div class="container" *ngIf="step==3">
+    <div class="alert alert-success w-100 mt-3">Payment Successful</div>
+    <button (click)="close()" class="btn btn-primary">Done</button>
+</div>
+<router-outlet></router-outlet>

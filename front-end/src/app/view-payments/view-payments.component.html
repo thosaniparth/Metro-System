@@ -1,0 +1,26 @@
+<br><br>
+<div class="container">
+    <table *ngIf="payments" class="table table-hover">
+        <tr>
+            <th>Username</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Is Coupon Applied?</th>
+            <th>Coupon Code</th>
+            <th>Original Price</th>
+            <th>Paid Price</th>
+        </tr>
+        <tr *ngFor="let payment of payments">
+            <td>{{payment.username}}</td>
+            <td>{{payment.a}}</td>
+            <td>{{payment.b}}</td>
+            <td *ngIf="payment.couponCodeApplied">Yes</td><td *ngIf="!payment.couponCodeApplied">No</td>
+            <td *ngIf="payment.couponCode">{{payment.couponCode}}</td><td *ngIf="!payment.couponCode">N/A</td>
+            <td>{{payment.orgPrice}}</td>
+            <td>{{payment.finalPrice}}</td>
+        </tr>
+    </table>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="!payments">No Payments Found</div>
+    <div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+</div>
+<router-outlet></router-outlet>

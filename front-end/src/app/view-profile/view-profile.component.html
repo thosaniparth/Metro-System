@@ -1,0 +1,32 @@
+<div class="container" *ngIf="user">
+<div class="jumbotron" style="margin: 15px;padding: 15px;">
+    <h2>User Profile</h2>
+    <div class="form-group">
+        <label><b>Role: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{role}}"><br>
+    </div>
+    <div class="form-group">
+        <label><b>Username: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{ user.username }}"><br>
+    </div>
+    <div class="form-group">
+        <label><b>Email-Id: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{ user.email }}"><br>
+    </div>
+    <div class="form-group">
+        <label><b>Contact Number: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{ user.contact }}"><br>
+    </div>
+    <div class="form-group" *ngIf="role=='user'">
+        <label><b>Wallet Balance: </b></label>
+        <input type="text" class="form-control" disabled placeholder="{{ user.walletBalance }}"><br>
+    </div>
+    <!-- <h5>{{role}}</h5>
+    <h5>username: {{ user.username }}</h5>
+    <h5>Email: {{ user.email }}</h5>
+    <h5>Contact: {{ user.contact }}</h5>
+    <h5>Wallet Balance: {{ user.walletBalance }}</h5> -->
+</div>
+</div>
+<div class="alert alert-danger w-100 mt-3" *ngIf="errMsg">{{errMsg}}</div>
+<div class="alert alert-danger w-100 mt-3" *ngIf="!user">No User Found</div>
